@@ -44,7 +44,7 @@
 The Container Timing API enables monitoring when annotated sections of the DOM are displayed on screen and have finished their initial paint.
 A developer will have the ability to mark subsections of the DOM with the `containertiming` attribute (similar to `elementtiming` for the [Element Timing API](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceElementTiming)) and receive performance entries when that section has been painted for the first time. This API will allow developers to measure the timing of various components in their pages.
 
-Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.). This API will produce candidates in the form of new [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update to the `containertiming` region. Updates are defined as paints in new areas as-yet unpainted.
+Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.). This API will produce [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update to the `containertiming` region. Updates are defined as paints in new areas as-yet unpainted, these entries will have details such as "How much has painted since last time", "which element was the last to paint" and "what is the total area of paints so far".
 
 ## Motivation
 
