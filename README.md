@@ -44,7 +44,7 @@
 The Container Timing API enables monitoring when annotated sections of the DOM are displayed on screen and have finished their initial paint.
 A developer will have the ability to mark subsections of the DOM with the `containertiming` attribute (similar to `elementtiming` for the [Element Timing API](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceElementTiming)) and receive performance entries when that section has been painted for the first time. This API will allow developers to measure the timing of various components in their pages.
 
-Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.), <!--The following phrase doesn't make sense grammatically; pls rewrite. --> so this API will offer candidates in the form of new [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update, and the developer can choose to take the most recent entry or stop recording when there has been user interaction.
+Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.). This API will produce candidates in the form of new [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update to the `containertiming` region. Updates are defined as paints in new areas as-yet unpainted.
 
 ## Motivation
 
@@ -127,61 +127,13 @@ If you want wish to ignore parts of the DOM tree you are monitoring, you can add
 </div>
 ```
 
-### Web IDL (subject to change)
-
-```idl
-interface PerformanceContainerTiming: PerformanceEntry {
-  readonly attribute DOMString entryType;
-  readonly attribute DOMString name;
-  readonly attribute DOMHighResTimeStamp? startTime;
-  readonly attribute DOMString identifier
-  readonly attribute DOMRectReadOnly intersectionRect;
-  readonly attribute DOMHighResTimeStamp? duration;
-  readonly attribute DOMHighResTimeStamp? firstRenderTime;
-  readonly attribute unsigned long long size;
-  readonly attribute Element? lastPaintedElement;
-};
-```
-
-## Algorithm
-
-If the Container Timing algorithm receives paint updates from elements inside a container root, it will perform the following steps:
-
-1. Set **PaintedRegionUpdated** \= false
-2. Set **RenderTime** to currentPaintUpdate.renderTime
-3. Set **firstRenderTime** \= containerRoot.firstRenderTime || **RenderTime**
-4. Set containerRoot.firstRenderTime ??= **firstRenderTime**
-5. Load the PaintedRegion associated with this container root or create a new one.
-6. For each new rect that was painted perform the follows:
-   1. If the PaintedRegion already contains the rect continue
-   2. If the PaintedRegion does not fully contain the rect
-      1. Set **PaintedRegionUpdated** to true
-      2. Set **PaintedRegion** \= PaintedRegion.union(rect)
-      3. Set **LastPaintedElement** \= Element the rect was associated with
-      4. Set LargestElement \= containerRoot.largestElement \> Element the rect was associated with ? containerRoot.largestElement : Element
-7. Create a PerformanceContainerTiming object |entry| with the following values:
-   1. entryType: “container”
-   2. name: ""
-   3. startTime: Set to **renderTime**
-   4. duration: Set to 0 (We may want to change this, see [Questions](#heading=h.elcf4k4aph14) below.
-   5. identifier: This is the "containertiming" attribute value from the containerRoot
-   6. firstRenderTime: Set to **firstRenderTime**
-   7. size: This is **PaintedRegion**.size(), representing the painted portion of the container. This is similar to the size property in LargestContentfulPaint entries
-   8. lastPaintedElement: **LastPaintedElement** This is the last element that received a paint update, this allows developers to debug what caused a paint in a container.
-   9. intersectionRect: **PaintedRegion**'s rect
-8. [Queue](https://w3c.github.io/performance-timeline/#queue-a-performanceentry) the entry so that relevant PerformanceObservers are notified. The entry will not be added to the performance timeline buffer
-
-### Life Cycle
+## Life Cycle
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./docs/img/life-cycle-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./docs/img/life-cycle-light.svg">
   <img alt="Diagram showing the life cycle of events when the container is being painted." src="./docs/img/life-cycle-light.svg">
 </picture>
-
-### Ignoring parts of the DOM <!-- Does this repeat the section above with the same title? -->
-
-You can use the `containertiming-ignore` attribute to ignore parts of the DOM tree inside a container root. Any elements inside a container root with this attribute will not be counted towards any paint updates for the parent container root.
 
 ```mermaid
 graph LR
