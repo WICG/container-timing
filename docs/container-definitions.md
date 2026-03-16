@@ -2,7 +2,7 @@
 
 With our Container Timing API not only do we need to define which DOM nodes are considered containers, but also what properties (or modes) they should have. This section outlines the structure and attributes of container definitions plus the problems we face with the current design.
 
-The following document assumes we have moved from containertiming-nesting to containertiming-modes which is described [here](https://github.com/bloomberg/container-timing/issues/22#issuecomment-3486196612)
+The following document assumes we have moved from containertiming-nesting to containertiming-modes which is described [here](https://github.com/WICG/container-timing/issues/22#issuecomment-3486196612)
 
 ## Structure of Container Definitions (Today)
 
@@ -248,7 +248,7 @@ This would mean keeping everything declared in the attributes instead of anywher
 **Cons**
 
 - You can't have two or more observers on the same root setting different rules. If someone sets rule private it will be overwritten by someone else setting it to transparent etc
-- You can't have two or more different IDs for a container root as it is set directly on the root. A second observer would need to use whichever identifier is set, you can see more of this discussed [here](https://github.com/bloomberg/container-timing/issues/20)
+- You can't have two or more different IDs for a container root as it is set directly on the root. A second observer would need to use whichever identifier is set, you can see more of this discussed [here](https://github.com/WICG/container-timing/issues/20)
 - Limited API which works well for single author, but won't help if components are observed by different users.
 - "ignore" is global
 

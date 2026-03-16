@@ -7,8 +7,8 @@
 
 ## Participate
 
-- [Explainer Issues](https://github.com/bloomberg/container-timing/issues)
-- [Github Repo](https://github.com/bloomberg/container-timing)
+- [Explainer Issues](https://github.com/WICG/container-timing/issues)
+- [Github Repo](https://github.com/WICG/container-timing)
 
 ## Table Of Contents
 
