@@ -4,8 +4,8 @@ Shortname: container-timing
 Level: none
 Status: ED
 Group: webperf
-URL: https://bloomberg.github.io/container-timing/
-Repository: https://github.com/bloomberg/container-timing
+URL: https://WICG.github.io/container-timing/
+Repository: https://github.com/WICG/container-timing
 Test Suite: https://github.com/web-platform-tests/wpt/tree/master/container-timing
 Editor: Jason Williams, Bloomberg
 Editor: José Dapena Paz, Igalia, jdapena@igalia.com
