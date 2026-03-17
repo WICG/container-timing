@@ -327,7 +327,7 @@ class ContainerPerformanceObserver implements PerformanceObserver {
 
     // There's a weird bug where we sometimes get a load of empty rects (all zero'd out)
     // https://issues.chromium.org/issues/379844652
-    // https://github.com/bloomberg/container-timing/issues/8
+    // https://github.com/WICG/container-timing/issues/8
     // The other reason this can happen is if an element renders "off screen", which is expected behavior (test case: https://fluoridated-bow-church.glitch.me/)
     if (ContainerPerformanceObserver.isEmptyRect(entry.intersectionRect)) {
       return;
