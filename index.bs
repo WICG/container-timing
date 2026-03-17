@@ -2,8 +2,8 @@
 Title: Container Timing API
 Shortname: container-timing
 Level: none
-Status: ED
-Group: webperf
+Status: CG-DRAFT
+Group: wicg
 URL: https://WICG.github.io/container-timing/
 Repository: https://github.com/WICG/container-timing
 Test Suite: https://github.com/web-platform-tests/wpt/tree/master/container-timing
