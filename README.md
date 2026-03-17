@@ -46,6 +46,8 @@ A developer will have the ability to mark subsections of the DOM with the `conta
 
 Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.). This API will produce [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update to the `containertiming` region. Updates are defined as paints in new areas as-yet unpainted, these entries will have details such as "How much has painted since last time", "which element was the last to paint" and "what is the total area of paints so far".
 
+See also: https://blogs.igalia.com/dape/2026/02/10/container-timing-measuring-web-components-performance/ 
+
 ## Motivation
 
 As developers increasingly organise their applications into components, there's growing demand to measure performance of subsections of an application or web page. For instance, [a developer may want to know](https://groups.google.com/g/web-vitals-feedback/c/TaQm0qq_kjs/m/z1AGXE0MBQAJ?utm_medium=email&utm_source=footer) when a subsection of the DOM has been painted, like a table or a widget, so they can mark the paint time and submit it to their analytics.
@@ -277,9 +279,10 @@ TPAC 2025:
 
 - [https://tag.w3.org/explainers/](https://tag.w3.org/explainers/)
 - [Pushing Pixels | Mark Zeman | performance.now() 2023](https://www.youtube.com/watch?t=2907&v=1jGaov-4ZcQ&feature=youtu.be)
-- Element Timing For Containers: [https://www.youtube.com/watch?v=MjGVtshDN7U](https://www.youtube.com/watch?v=MjGVtshDN7U).
+- [Element Timing For Containers](https://www.youtube.com/watch?v=MjGVtshDN7U)
 - [Element Timing for Text](https://docs.google.com/document/d/1xhPJnXf0Nqsi8cBFrlzBuHavirOVZBd8TqdD_OyrDGw/edit)
 - [Element Timing Implementation Proposal](https://docs.google.com/document/d/1BvHknbj3T-fUuj4RxHF8qGRNxbswtBqUjKiPx7iLXCc/edit#heading=h.sgo0q1rfaa9b)
+- [Container Timing: Measuring Web Components Performance](https://blogs.igalia.com/dape/2026/02/10/container-timing-measuring-web-components-performance/)
 
 ## References & acknowledgements
 
