@@ -1,5 +1,7 @@
 # Container Timing: Explainer
 
+_Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome v147-152, please try it out!_
+
 ## Authors
 
 - Jason Williams (Bloomberg)
@@ -46,7 +48,7 @@ A developer will have the ability to mark subsections of the DOM with the `conta
 
 Unlike with Element Timing, it is not possible for the renderer to know when a section of the DOM has finished painting (there could be future changes, asynchronous requests for new images, slow loading buttons, etc.). This API will produce [`PerformanceEntry`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry) objects when there has been an update to the `containertiming` region. Updates are defined as paints in new areas as-yet unpainted, these entries will have details such as "How much has painted since last time", "which element was the last to paint" and "what is the total area of paints so far".
 
-See also: https://blogs.igalia.com/dape/2026/02/10/container-timing-measuring-web-components-performance/ 
+See also: https://blogs.igalia.com/dape/2026/02/10/container-timing-measuring-web-components-performance/
 
 ## Motivation
 
@@ -177,12 +179,9 @@ Most of the information provided by this API can already be estimated, even if i
 
 ## How do we try this out?
 
-~~### Polyfill~~
+## Chrome Origin Trial
 
-~~- See [Polyfill](./docs/polyfill.md)~~
-~~- See [Polyfill Performance Impact](./docs/performance-impact.md)~~
-
-_The polyfill has been deprecated in favor of trying out the API in Chrome Canary or Beta._
+See: [Origin Trial](./ORIGIN_TRIAL.md)
 
 ## Chrome Canary and Chrome Beta
 
