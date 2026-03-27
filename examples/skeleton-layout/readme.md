@@ -19,7 +19,7 @@ After real content appears you should see a clear `lastPaintedSubElement` refere
 
 ### Running
 
-Open `index.html` in a browser (with the polyfill bundled) or serve the repo and visit:
+Open `index.html` in a browser or serve the repo and visit:
 
 ```
 /examples/skeleton-layout/index.html
