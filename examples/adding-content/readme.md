@@ -1,6 +1,6 @@
 ## Adding Content
 
-This example shows how the polyfill would work when dynamically adding nodes to a component after it has rendered.
+This example shows how the Container Timing would work when dynamically adding nodes to a component after it has rendered.
 
 Here the Element Timing event fires twice, we can see which element updated the container in each instance.
 
