@@ -183,7 +183,7 @@ For each {{Document}}, the user agent must maintain a <dfn export>container root
 Extensions to the {{Element}} Interface {#extensions-to-element}
 ----------------------------------------------------------------
 
-<em>This section will be removed once the [[DOM]] specification had been modified.<em>
+<em>This section will be removed once the [[DOM]] specification had been modified</em>
 
 We extend the {{Element}} interface as follows:
 
