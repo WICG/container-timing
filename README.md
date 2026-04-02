@@ -1,6 +1,6 @@
 # Container Timing: Explainer
 
-_Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome v147-152, please try it out!_
+_Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome m148-153, please try it out!_
 
 ## Authors
 
