@@ -10,9 +10,9 @@ This document describes the Chrome experimental feature enabling developers to m
 - **Issue Tracker**: [GitHub Issues](https://github.com/WICG/container-timing/issues)
 - **Blog Post**: [Container Timing: Measuring Web Components Performance](https://blogs.igalia.com/dape/2026/02/10/container-timing-measuring-web-components-performance/)
 
-## Implementation in Chrome v147+
+## Origin Trial available from m148 - m153
 
-Chrome v147 introduced support for the Container Timing API behind the experimental web platform features flag. The API allows developers to mark sections of the DOM with the `containertiming` attribute and receive performance entries when those sections are painted.
+The Chrome Origin Trial introduces support for the Container Timing API behind the experimental web platform features flag. The API allows developers to mark sections of the DOM with the `containertiming` attribute and receive performance entries when those sections are painted.
 
 ### Basic Usage
 
