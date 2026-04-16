@@ -1,6 +1,6 @@
 # Container Timing: Explainer
 
-_Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome v147-152, please try it out!_
+_Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome m148-153, please try it out!_
 
 ## Authors
 
@@ -16,30 +16,25 @@ _Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome v
 
 1. [Authors](#authors)
 1. [Introduction](#introduction)
-1. [Motivation](#motivation)
+1. [Goals](#goals)
 1. [Objectives](#goals)
 1. [Using The API](#using-the-api)
-1. [Algorithm](#algorithm)
-   1. [Life Cycle](#life-cycle)
-1. [Nested Containers Roots](#nested-container-roots)
-   1. [Ignore](#ignore-default)
-   1. [Transparent](#transparent)
-   1. [Shadowed](#shadowed)
+1. [Life Cycle](#life-cycle)
 1. [Non Goals](#non-goals)
    1. [LCP Integration](#lcp-integration)
    1. [Built-in containers](#built-in-containers)
    1. [Shadow DOM](#shadow-dom)
 1. [Security and Privacy](#security-and-privacy)
 1. [How do we try this?](#how-do-we-try-this-out)
-   1. [Polyfill](#polyfill)
+   1. [Chrome Origin Trial](#chrome-origin-trial)
    1. [Browser Extension](#browser-extension)
 1. [Considered alternatives](#considered-alternatives)
 1. [Questions](#questions)
 1. [W3C Specification Meetings](#w3c-specification-meetings)
 1. [Standards Positions](#standards-positions)
-1. [Browser extension](#extension)
 1. [Glossary](#glossary)
 1. [Links](#links--further-reading)
+1. [Reference](#references--acknowledgements)
 
 ## Introduction
 
