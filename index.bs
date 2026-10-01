@@ -56,6 +56,8 @@ Life Cycle {#life-cycle}
 In this example life cycle a component will paint multiple pieces of content at different times, each of these times will generate a new {{PerformanceContainerTiming}} entry with updated information.
 
 However, once a region has been painted, subsequent paints of that same region will not generate new entries.
+
+Once the user has scrolled or interacted with the page, no further paints are recorded and no new entries are generated.
 <img src="docs/img/life-cycle-dark.svg" width="679" height="740" style="background: transparent;" alt="Container Timing Life Cycle Diagram">
 
 Usage Example {#example-usage}
@@ -184,6 +186,25 @@ Per-Document State {#per-document-state}
 
 For each {{Document}}, the user agent must maintain a <dfn export>container root records map</dfn> that maps [=container root=] {{HTMLElement}}s to [=Container Timing Record=] objects.
 
+<div dfn-for="Window">
+Each {{Window}} has <dfn>has dispatched scroll event</dfn>, a boolean which is initially set to false.
+
+Each {{Window}} has <dfn>has dispatched input event</dfn>, a boolean which is initially set to false.
+</div>
+
+Modifications to the DOM specification {#modifications-to-dom}
+---------------------------------------------------------------
+
+<em>This section will be removed once the [[DOM]] specification has been modified.</em>
+
+We modify the [=dispatch|event dispatch algorithm=] as follows.
+
+Right after step 1, we add the following steps:
+
+1. If |target|'s [=relevant global object=] is a {{Window}} object and |event|'s {{Event/isTrusted}} is true:
+    1. If |event|'s {{Event/type}} is <code>scroll</code>, set |target|'s [=relevant global object=]'s [=Window/has dispatched scroll event=] to true.
+    2. If |event|'s {{Event/type}} is one of <code>keydown</code>, <code>mousedown</code>, <code>pointerdown</code>, or <code>click</code>, set |target|'s [=relevant global object=]'s [=Window/has dispatched input event=] to true.
+
 
 
 Extensions to the {{HTMLElement}} Interface {#extensions-to-element}
@@ -272,16 +293,20 @@ Handle Element Painted for Container Timing {#handle-element-painted}
 <div algorithm="handle element painted for container timing">
 When an element is painted and the user agent needs to handle container timing updates, given a {{Document}} |document|, a [=PaintTimingMixin/paint timing info=] |paintTimingInfo|, an {{HTMLElement}} |element|, and a {{DOMRectReadOnly}} |intersectionRect|, perform the following steps:
 
-1. If |element| does not [=Contribute to container timing=], return.
-2. Let |containerRoot| be the result of <a>get the container root element</a> given |element|.
-3. If |containerRoot| is null, return.
-4. Let |record| be the entry in |document|'s <a>container root records map</a> for |containerRoot|. If no such entry exists, set |record| to the result of <a>create a Container Timing Record</a> given |paintTimingInfo| and the value of |containerRoot|'s {{HTMLElement/containerTiming}} content attribute; then add (|containerRoot| → |record|) to |document|'s <a>container root records map</a>.
-5. Let |enclosingRect| be the smallest enclosing rectangle of |intersectionRect|.
-6. <a>Maybe update the last new painted area</a> for |record| given |document|, |containerRoot|, |element|, |enclosingRect|, and |paintTimingInfo|.
-7. Mark the {{Document}} as having pending container timing changes.
+1. Let |window| be |document|'s [=relevant global object=].
+2. If either of |window|'s [=Window/has dispatched scroll event=] or [=Window/has dispatched input event=] is true, return.
+3. If |element| does not [=Contribute to container timing=], return.
+4. Let |containerRoot| be the result of <a>get the container root element</a> given |element|.
+5. If |containerRoot| is null, return.
+6. Let |record| be the entry in |document|'s <a>container root records map</a> for |containerRoot|. If no such entry exists, set |record| to the result of <a>create a Container Timing Record</a> given |paintTimingInfo| and the value of |containerRoot|'s {{HTMLElement/containerTiming}} content attribute; then add (|containerRoot| → |record|) to |document|'s <a>container root records map</a>.
+7. Let |enclosingRect| be the smallest enclosing rectangle of |intersectionRect|.
+8. <a>Maybe update the last new painted area</a> for |record| given |document|, |containerRoot|, |element|, |enclosingRect|, and |paintTimingInfo|.
+9. Mark the {{Document}} as having pending container timing changes.
         </div>
 
 Note: This algorithm is invoked for each image or text node that paints. The intersection rectangle should be computed using the <a>intersection rect algorithm</a> with the element as target and viewport as root, intersected with the visual viewport. For text nodes, the intersection rectangle is the smallest rectangle containing the border boxes of all text nodes in the <a>set of owned text nodes</a>, intersected with the visual viewport.
+
+Note: Container Timing is intended to measure the initial rendering of content. Once the user has scrolled or interacted with the document, paints are no longer recorded, as they are likely to be a result of that scroll or interaction (for example, content scrolled into view or revealed by a click) rather than the page loading. Entries already pending for the current frame are still emitted.
 
 Emit Container Timing Entries {#emit-container-timing-entries}
 --------------------------------------------------------------
