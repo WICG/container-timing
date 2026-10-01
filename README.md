@@ -226,7 +226,7 @@ Finally, tracking of all rectangles in userspace may not be as efficient as the 
 - How do we register containers? Can it be done dynamically? (More [here](./docs/container-definitions.md))
 - Setting the `containertiming` attribute far up the tree could cause a lot of processing. As the depth is infinite, we may need to have some limit or default depth set.
 - ~~We will want to add some way for developers to ignore certain blocks of elements without using an inner container (which would degrade performance).~~
-- As most developers will be using this for startup metrics (similar to LCP), do we want to offer an option to stop tracking on user input?
+- ~~As most developers will be using this for startup metrics (similar to LCP), do we want to offer an option to stop tracking on user input?~~ Resolved: container timing stops recording once the user scrolls or interacts with the page.
 - As the browser paints in batches, lastPaintedElement may need to be an array of elements.
 
 ## W3C Specification Meetings
