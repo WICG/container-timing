@@ -1,5 +1,5 @@
  {
-    "group":      [80485]
+    "group":      ["wg/webperf"]
 ,   "contacts":   ["yoavweiss"]
-,   "repo-type":  "cg-report"
+,   "repo-type":  "rec-track"
 }
