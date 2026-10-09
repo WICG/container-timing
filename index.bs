@@ -2,10 +2,10 @@
 Title: Container Timing API
 Shortname: container-timing
 Level: none
-Status: CG-DRAFT
-Group: wicg
-URL: https://WICG.github.io/container-timing/
-Repository: https://github.com/WICG/container-timing
+Status: ED
+Group: webperf
+URL: https://w3c.github.io/container-timing/
+Repository: https://github.com/w3c/container-timing
 Test Suite: https://github.com/web-platform-tests/wpt/tree/master/container-timing
 Editor: Jason Williams, Bloomberg
 Editor: José Dapena Paz, Igalia, jdapena@igalia.com

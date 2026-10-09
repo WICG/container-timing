@@ -9,9 +9,9 @@ _Note: This API plans to go to [Origin Trial](./ORIGIN_TRIAL.md) during Chrome m
 
 ## Participate
 
-- [Explainer Issues](https://github.com/WICG/container-timing/issues)
-- [Github Repo](https://github.com/WICG/container-timing)
-- [Spec](https://wicg.github.io/container-timing/)
+- [Explainer Issues](https://github.com/w3c/container-timing/issues)
+- [Github Repo](https://github.com/w3c/container-timing)
+- [Spec](https://w3c.github.io/container-timing/)
 
 ## Table Of Contents
 
@@ -78,11 +78,11 @@ The changes here are also not going to add support to built-in composite element
 
 ### Shadow DOM
 
-Currently, Element Timing [doesn't have support for shadow DOM](https://github.com/WICG/element-timing/issues/3). There will need to be many architecture-decisions made on how the shadow DOM interacts with Element Timing (should it be opened up or closed, should individual elements be surfaced or just the shadow host element). Once we have a good story for Element Timing, we can have a later proposal for Container Timing too (which hopefully follows similar rules to the Element Timing API).
+Currently, Element Timing [doesn't have support for shadow DOM](https://github.com/w3c/element-timing/issues/3). There will need to be many architecture-decisions made on how the shadow DOM interacts with Element Timing (should it be opened up or closed, should individual elements be surfaced or just the shadow host element). Once we have a good story for Element Timing, we can have a later proposal for Container Timing too (which hopefully follows similar rules to the Element Timing API).
 
 ## Using the API
 
-As with [Element Timing](https://github.com/WICG/element-timing), registration will be on a per-element basis. An element with a `containertiming` attribute will have itself and its whole sub-tree registered for container timing. There is currently no plan for implicit registration; see [Built-in containers](#built-in-containers).
+As with [Element Timing](https://github.com/w3c/element-timing), registration will be on a per-element basis. An element with a `containertiming` attribute will have itself and its whole sub-tree registered for container timing. There is currently no plan for implicit registration; see [Built-in containers](#built-in-containers).
 
 Example:
 
